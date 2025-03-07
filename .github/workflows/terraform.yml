@@ -42,6 +42,13 @@ jobs:
                 role-to-assume: ${{ inputs.aws-assume-role-arn }}
                 role-session-name: Github_to_AWS_via_FederatedOIDC
                 aws-region: ${{ inputs.aws-region}}
+            
+           - name: terraform install
+             run: |
+               wget https://releases.hashicorp.com/terraform/1.11.0/terraform_1.11.0_linux_amd64.zip
+               unzip terraform_1.11.0_linux_amd64.zip
+               sudo mv terraform /usr/local/bin
+               terraform version
            
            - name: Terraform Init
              run: |
