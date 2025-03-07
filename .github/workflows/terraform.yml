@@ -43,12 +43,10 @@ jobs:
                 role-session-name: Github_to_AWS_via_FederatedOIDC
                 aws-region: ${{ inputs.aws-region}}
             
-           - name: terraform install
-             run: |
-               wget https://releases.hashicorp.com/terraform/1.11.0/terraform_1.11.0_linux_amd64.zip
-               unzip terraform_1.11.0_linux_amd64.zip
-               sudo mv terraform /usr/local/bin
-               terraform version
+           - name: config terraform
+             uses: hashicorp/setup-terraform@v3
+             with: 
+               terraform_version: 1.11.0
            
            - name: Terraform Init
              run: |
