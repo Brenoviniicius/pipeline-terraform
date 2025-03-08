@@ -63,8 +63,8 @@ jobs:
            
            - name: Selecionar workspace e rodar o Terraform
              run: |
-               terraform workspace select dev || terraform workspace new dev
-               terraform plan -var-file="./infra/envs/dev/terraform.tfvars" -out="dev.plan"
+               terraform workspace select ${{ inputs.environment }} || terraform workspace new ${{ inputs.environment }} &&
+               terraform plan -var-file="./envs/${{ inputs.environment }}/terraform.tfvars" -out="${{ inputs.environment }}.plan"
            
 
            - name: Terraform Init
