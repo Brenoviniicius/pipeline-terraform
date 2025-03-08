@@ -55,7 +55,7 @@ jobs:
              run: ls -la infra/envs/dev/
 
            - name: Verificar o tfvars no diretório
-             run: ls -l ./envs/${{ inputs.environment }}
+             run: ls -l ./infra/envs/${{ inputs.environment }}
 
            
            - name: Inicializar Terraform
@@ -64,7 +64,7 @@ jobs:
            - name: Selecionar workspace e rodar o Terraform
              run: |
                terraform workspace select dev || terraform workspace new dev
-               terraform plan -var-file="./envs/dev/terraform.tfvars" -out="dev.plan"
+               terraform plan -var-file="./infra/envs/dev/terraform.tfvars" -out="dev.plan"
            
 
            - name: Terraform Init
