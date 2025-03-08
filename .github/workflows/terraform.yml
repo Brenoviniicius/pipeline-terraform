@@ -53,6 +53,10 @@ jobs:
            
            - name: Verificar arquivos no diretório
              run: ls -la infra/envs/dev/
+
+           - name: Verificar o tfvars no diretório
+             run: ls -l ./envs/${{ inputs.environment }}
+
            
            - name: Inicializar Terraform
              run: terraform init
