@@ -51,6 +51,18 @@ jobs:
            - name: terraform version
              run: terraform version
            
+           - name: Verificar arquivos no diretório
+             run: ls -la ./envs/dev/
+           
+           - name: Inicializar Terraform
+             run: terraform init
+           
+           - name: Selecionar workspace e rodar o Terraform
+             run: |
+               terraform workspace select dev || terraform workspace new dev
+               terraform plan -var-file="./envs/dev/terraform.tfvars" -out="dev.plan"
+           
+
            - name: Terraform Init
              run: |
                cd infra && terraform init \
